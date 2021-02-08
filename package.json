@@ -1,6 +1,6 @@
 {
   "name": "pullmeister",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,16 +8,20 @@
     "lintjs": "eslint . --ext js --ext jsx"
   },
   "homepage": "https://github.com/lunavod/pullmeister#readme",
-  "keywords": ["git", "pull"],
+  "keywords": [
+    "git",
+    "pull"
+  ],
   "author": "lunavod <lunavod@bk.ru> (https://github.com/lunavod)",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/lunavod/pullmeister.git"
+    "type": "git",
+    "url": "https://github.com/lunavod/pullmeister.git"
   },
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
     "gitlog": "^4.0.4",
+    "micromatch": "^4.0.2",
     "simple-git": "^2.34.2",
     "spawn-args": "^0.2.0"
   },
