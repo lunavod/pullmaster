@@ -1,6 +1,6 @@
-# PullMeister - выполнение задач после git pull
+# PullMeister - execute tasks after git pull
 
-Пример конфиг файла `pullmeister.config.js`
+Config file example `pullmeister.config.js`
 ```js
 module.exports = ({
     test: {
@@ -11,8 +11,15 @@ module.exports = ({
             "echo Done"
         ]
     },
+    migrate: {
+        description: "Run db migrations",
+        glob: "app/Database/Migrations/*.php",
+        commands: [
+            "php ./spark migrate"
+        ]
+    },
     compileFrontend: {
-        description: "Пересборка фронтенда",
+        description: "Rebuild frontend",
         glob: "frontend/**/*.*",
         commands: [
             ["yarn build", {dir: "./frontend"}]
@@ -21,5 +28,8 @@ module.exports = ({
 })
 ```
 
-После размещения конфиг файла в корне проекта, при вызове команды `pullmaster` скрипт выполнит `git pull`,
-после чего проверит измененные файлы на соответствие глобам из конфига, и выполнит команды из подошедших задач.
+Place config file on your repo's root, then run a command `pullmeister` (or just `pm`).
+Script will execute git pull, then match received files with glob patterns from a config file, 
+and run matching tasks.
+
+Rebuild your frontend, migrate database, and more!

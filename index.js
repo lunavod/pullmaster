@@ -25,7 +25,7 @@ const runCommand = async (command, options = {}) => {
     const code = await new Promise((resolve) => p.on("close", resolve))
     if (code !== 0) {
         console.error(
-            chalk.red(`Команда выполнилась с ошибкой, код выхода ${code}!`)
+            chalk.red(`Command returned error, code ${code}!`)
         )
         throw new Error()
     }
@@ -34,7 +34,7 @@ const runCommand = async (command, options = {}) => {
 const main = async () => {
     const configPath = dir+"/pullmeister.config.js"
     if (!fs.existsSync(configPath)) {
-        return console.error("Конфиг pullmeister.config.js не найден")
+        return console.error("Config pullmeister.config.js not found")
     }
 
     const config = require(configPath)
@@ -44,19 +44,19 @@ const main = async () => {
         fields: ["hash", "subject", "authorName", "authorEmail", "authorDate"]
     })[0]
     console.log(
-        chalk`Последний коммит: {blue ${lastCommit.subject}} {yellow <${
+        chalk`Last commit: {blue ${lastCommit.subject}} {yellow <${
             lastCommit.authorEmail
         }>} ${lastCommit.authorDate.split(" ").slice(0, 2).join(" ")} {gray [${
             lastCommit.hash
         }]}`
     )
 
-    console.log(chalk`{blue Выполняю git pull...}`)
+    console.log(chalk`{blue Executing git pull...}`)
     const data = await simpleGit(dir).pull()
     // console.log(data)
     const files = data.files
     if (!files.length) {
-        console.log(chalk`{green Обновлений нет}`)
+        console.log(chalk`{green No updates!}`)
         return
     }
 
@@ -66,7 +66,7 @@ const main = async () => {
         fields: ["hash", "subject", "authorName", "authorEmail", "authorDate"],
     })
     console.log()
-    console.log("Полученные коммиты:")
+    console.log("Received commits:")
     for (let commit of commits) {
         if (commit.hash === lastCommit.hash) break
         console.log(
@@ -101,6 +101,6 @@ const main = async () => {
         }
     }
     console.log()
-    console.log(chalk.green("Готово!"))
+    console.log(chalk.green("Done!"))
 }
 main()
