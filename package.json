@@ -1,18 +1,32 @@
 {
-  "name": "pullmaster",
+  "name": "pullmeister",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lintjs": "eslint . --ext js --ext jsx"
   },
-  "keywords": [],
-  "author": "",
+  "homepage": "https://github.com/lunavod/pullmeister#readme",
+  "keywords": ["git", "pull"],
+  "author": "lunavod <lunavod@bk.ru> (https://github.com/lunavod)",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/lunavod/pullmeister.git"
+  },
   "license": "ISC",
   "dependencies": {
-    "git-last-commit": "^1.0.0"
+    "chalk": "^4.1.0",
+    "gitlog": "^4.0.4",
+    "simple-git": "^2.34.2",
+    "spawn-args": "^0.2.0"
   },
   "bin": {
-    "pullmaster": "./index.js"
+    "pullmeister": "./index.js",
+    "pm": "./index.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-plugin-import": "^2.22.1"
   }
 }
