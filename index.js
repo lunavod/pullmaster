@@ -17,10 +17,8 @@ const runCommand = async (command, options = {}) => {
     const p = spawn(commandName, args, {
         cwd: options.dir || dir,
         env: process.env,
+        stdio: [process.stdout, process.stderr]
     })
-
-    p.stdout.pipe(process.stdout)
-    p.stderr.pipe(process.stderr)
 
     const code = await new Promise((resolve) => p.on("close", resolve))
     if (code !== 0) {
